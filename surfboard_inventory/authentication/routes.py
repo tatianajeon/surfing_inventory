@@ -44,6 +44,7 @@ def signin():
                 login_user(logged_user)
                 flash('You were succesfully login in via Email/Password', 'auth-success')
                 return redirect(url_for('site.profile'))
+            
             else:
                 flash('Your Email/Password is incorrect', 'auth-failed')
                 return redirect(url_for('auth.signin'))
@@ -51,3 +52,10 @@ def signin():
         raise Exception('Invalid Form Data: Please Check Your Form')
 
     return render_template('signin.html', form=form)
+
+
+@auth.route('/logout')
+@login_required # decorator
+def logout():
+    logout_user()
+    return redirect(url_for('site.home'))

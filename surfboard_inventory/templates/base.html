@@ -16,29 +16,35 @@
         <div><img src="../static/css/images/surfboard_icon.svg" alt="surf-logo">
         </div>
         
+        <!-- Nav Items Here -->
         <div>
             <ul id="horizontal-list">
                 <a href="{{ url_for('site.home') }}">
-                    <li>Party Wave Surfboards</li>
-                </a>
-                <a href="{{ url_for('site.profile') }}">
-                    <li>About</li>
+                    <li>The Coding Drones Project</li>
                 </a>
                 <a href="#">
-                    <li>Shop</li>
+                    <li>Donate</li>
                 </a>
+                
+                {% if current_user.is_authenticated %}
                 <a href="{{ url_for('site.profile') }}">
                     <li>Profile</li>
                 </a>
+                <a href="{{ url_for('auth.logout') }}">
+                    <li>Log Out</li>
+                </a>
+                {% else %}
                 <a href="{{ url_for('auth.signin') }}">
-                    <li>Sign In</li>
+                    <li>Sign-In</li>
                 </a>
                 <a href="{{ url_for('auth.signup') }}">
-                    <li>Sign Up</li>
+                    <li>Sign-Up</li>
                 </a>
+                {% endif %}
             </ul>
         </div>
     </nav>
+    <!-- End of Navbar -->
 
     {% block content %}
 
